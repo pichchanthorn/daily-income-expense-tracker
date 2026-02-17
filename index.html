@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="pageTitle">Daily Income & Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1 data-i18n="headerTitle">Daily Income & Expense Tracker</h1>
+          <p data-i18n="headerSubtitle">Track your daily cash flow in seconds.</p>
+        </div>
+        <button id="languageToggle" class="btn-ghost" type="button" aria-label="Switch language">EN | KH</button>
+      </header>
+
+      <main class="dashboard">
+        <section class="summary-grid" aria-label="Financial summary" data-i18n-aria-label="summaryAria">
+          <article class="summary-card income-card">
+            <h2 data-i18n="totalIncome">Total Income</h2>
+            <p id="totalIncome">$0.00</p>
+          </article>
+
+          <article class="summary-card expense-card">
+            <h2 data-i18n="totalExpense">Total Expense</h2>
+            <p id="totalExpense">$0.00</p>
+          </article>
+
+          <article class="summary-card balance-card">
+            <h2 data-i18n="balance">Balance</h2>
+            <p id="balance">$0.00</p>
+          </article>
+        </section>
+
+        <section class="panel" aria-label="Add entry form" data-i18n-aria-label="addEntryAria">
+          <h2 data-i18n="addEntry">Add Entry</h2>
+          <form id="entryForm" novalidate>
+            <div class="form-grid">
+              <label>
+                <span data-i18n="type">Type</span>
+                <select id="type" required>
+                  <option value="income" data-i18n="income">Income</option>
+                  <option value="expense" data-i18n="expense">Expense</option>
+                  <option value="credit" data-i18n="credit">Credit</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="amount">Amount</span>
+                <input id="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required />
+              </label>
+
+              <label>
+                <span data-i18n="currency">Currency</span>
+                <select id="currency" required>
+                  <option value="USD">USD ($)</option>
+                  <option value="KHR">KHR (៛)</option>
+                </select>
+              </label>
+
+              <label class="full-width">
+                <span data-i18n="description">Description</span>
+                <input id="description" type="text" maxlength="80" placeholder="e.g., Freelance work, Groceries" required />
+              </label>
+
+              <label id="creditNameField" class="full-width" hidden>
+                <span data-i18n="creditName">Credit Name</span>
+                <input id="creditName" type="text" maxlength="80" placeholder="e.g., Dara, Supplier A" />
+              </label>
+
+              <label>
+                <span data-i18n="date">Date</span>
+                <input id="date" type="date" required />
+              </label>
+
+              <button class="btn-primary" type="submit" data-i18n="addEntryBtn">Add Entry</button>
+            </div>
+            <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="panel" aria-label="Entry list" data-i18n-aria-label="entryListAria">
+          <div class="panel-title-row">
+            <h2 data-i18n="recentEntries">Recent Entries</h2>
+            <button id="clearAllBtn" class="btn-ghost" type="button" data-i18n="clearAll">Clear All</button>
+          </div>
+
+          <div id="emptyState" class="empty-state" data-i18n="emptyState">No entries yet. Add your first income, expense, or credit.</div>
+
+          <div class="table-wrap" id="tableWrap" hidden>
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="date">Date</th>
+                  <th data-i18n="description">Description</th>
+                  <th data-i18n="type">Type</th>
+                  <th data-i18n="creditName">Credit Name</th>
+                  <th data-i18n="amount">Amount</th>
+                  <th data-i18n="action">Action</th>
+                </tr>
+              </thead>
+              <tbody id="entryTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
