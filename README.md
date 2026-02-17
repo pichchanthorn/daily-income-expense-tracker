@@ -21,12 +21,12 @@ Designed with simplicity and clarity in mind for non-technical users.
 ## 📁 Project Structure
 ```
 
-```
+
 ├── index.html
 ├── style.css
 ├── app.js
 └── README.md
-```
+
 
 ```
 
